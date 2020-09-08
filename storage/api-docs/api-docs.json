@@ -1,0 +1,267 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Assignment ApplicationAPI",
+        "description": "",
+        "contact": {
+            "email": "ashwani@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/",
+            "description": "Assignment Local API Server"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "login functionality",
+                "operationId": "/login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email if of user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "In case of Exception"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "register"
+                ],
+                "summary": "register functionality",
+                "operationId": "/register",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email id of user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "0 = job provider, 1 =job seeker",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User register successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "In case of Exception"
+                    }
+                }
+            }
+        },
+        "/add-job": {
+            "post": {
+                "tags": [
+                    "add-job"
+                ],
+                "summary": "Add new job functionality",
+                "operationId": "/add-job",
+                "parameters": [
+                    {
+                        "name": "job_title",
+                        "in": "query",
+                        "description": "job title",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "job_description",
+                        "in": "query",
+                        "description": "job description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job added successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "In case of Exception"
+                    }
+                }
+            }
+        },
+        "/apply-job": {
+            "post": {
+                "tags": [
+                    "apply job"
+                ],
+                "summary": "Apply for job functionality",
+                "operationId": "/apply-job",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "description": "job id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "job description",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job application added successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "In case of Exception"
+                    }
+                }
+            }
+        },
+        "/request": {
+            "post": {
+                "tags": [
+                    "request"
+                ],
+                "summary": "request status functionality",
+                "operationId": "/request",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "description": "job id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "request_status",
+                        "in": "query",
+                        "description": "request status",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recuest accept or reject successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "In case of Exception"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
